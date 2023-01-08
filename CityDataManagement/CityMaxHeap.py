@@ -49,8 +49,19 @@ class CityMaxHeap(AbstractCityHeap):
         Establish heap conditions for a Max-Heap via Floyds Heap Construction Algorithmus.
 
         """
-        # TODO: implement me!
-        ...
+        while index < amount_of_cities:
+            child_index = self.get_left_child_index(index)
+            if child_index < amount_of_cities and self.get_city_population(child_index) > self.get_city_population(
+                    index):
+                index = child_index
+            if child_index + 1 < amount_of_cities and self.get_city_population(
+                    child_index + 1) > self.get_city_population(index):
+                index = child_index + 1
+            if index == child_index:
+                self.swap_nodes(index, child_index)
+                index = child_index
+            else:
+                break
 
     def heapify_down_iterative(self):
         """
